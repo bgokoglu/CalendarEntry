@@ -4,24 +4,44 @@ using System.Text;
 
 namespace CalendarEntry
 {
-    public class CalendarHelper
+    public static class CalendarHelper
     {
+        /// <summary>
+        /// Creates Outlook entry
+        /// </summary>
+        /// <param name="entry">Appointment</param>
+        /// <returns>MemoryStream</returns>
         public static MemoryStream CreateOutlookEntry(Appointment entry)
         {
             return CreateIcs(entry);
         }
-
+        
+        /// <summary>
+        /// Creates iCal entry
+        /// </summary>
+        /// <param name="entry">Appointment</param>
+        /// <returns>MemoryStream</returns>
         public static MemoryStream CreateiCalEntry(Appointment entry)
         {
             return CreateIcs(entry);
         }
 
+        /// <summary>
+        /// Creates Google Calendar link
+        /// </summary>
+        /// <param name="entry">Appointment</param>
+        /// <returns>string</returns>
         public static string CreateGoogleCalendarLink(Appointment entry)
         {
             const string url = "https://www.google.com/calendar/render?action=TEMPLATE&hl=en&text={0}&dates={1}/{2}&location={3}&details={4}sf=true&output=xml";
             return string.Format(url, entry.Title, GetFormattedDate(entry.StartDateTime), GetFormattedDate(entry.EndDateTime), entry.Location, entry.Description);
         }
 
+        /// <summary>
+        /// Creates Yahoo Calendar link
+        /// </summary>
+        /// <param name="entry">Appointment</param>
+        /// <returns>string</returns>
         public static string CreateYahooCalendarLink(Appointment entry)
         {
             const string url = "http://calendar.yahoo.com/?v=60&view=d&type=20&title={0}&st={1}&et={2}&desc={4}&in_loc={3}";
