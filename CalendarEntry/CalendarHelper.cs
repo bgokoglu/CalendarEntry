@@ -73,7 +73,7 @@ namespace CalendarEntry
             var enc = new UTF8Encoding();
             var arrBytData = enc.GetBytes(sb.ToString());
             ms.Write(arrBytData, 0, arrBytData.Length);
-            ms.Position = 0;
+            ms.Seek(0, SeekOrigin.Begin);
 
             return ms;
         }
